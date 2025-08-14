@@ -13,11 +13,6 @@ import (
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	// Load .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 
 	// Get database credentials from environment variables
 	dbUsername := os.Getenv("DB_USERNAME")
