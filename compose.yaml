@@ -44,3 +44,8 @@ networks:
   app-network:
     external: true
     name: nginx-proxy_network
+
+volumes:
+  nginx_ternago:
+    driver: local
+    name: nginx_ternago
