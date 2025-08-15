@@ -33,7 +33,7 @@ services:
     container_name: ternago_nginx
     restart: unless-stopped
     volumes:
-      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - nginx_ternago:/var/log/nginx
     depends_on:
       - ternago
