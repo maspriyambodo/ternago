@@ -27,12 +27,18 @@ services:
       - app-network
     volumes:
       - ./logs:/app/logs
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+
+  nginx:
+    image: nginx:alpine
+    container_name: ternago_nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      - nginx_ternago:/var/log/nginx
+    depends_on:
+      - ternago
+    networks:
+      - app-network
 
 networks:
   app-network:
