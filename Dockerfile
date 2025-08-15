@@ -30,8 +30,8 @@ RUN chown -R appuser:appuser /app
 
 # Copy binary from builder stage
 COPY --from=builder /app/main .
-COPY --from=builder /app/templates ./templates
-COPY --from=builder /app/static ./static
+# Copy configuration files
+COPY .env /app/
 
 # Create logs directory
 RUN mkdir -p logs && chown -R appuser:appuser logs
