@@ -9,6 +9,8 @@ import (
 
 // SetupRoutes configures all API routes
 func SetupRoutes(r *gin.Engine) {
+	// routes for health check
+	r.GET("/health", controllers.HealthCheck)
 	api := r.Group("/api/v1")
 	{
 		// AuthMstAdmins routes

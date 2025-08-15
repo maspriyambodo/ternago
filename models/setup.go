@@ -2,7 +2,9 @@ package models
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"time"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -31,4 +33,13 @@ func ConnectDatabase() {
 	database.AutoMigrate(&AuthMstAdmin{})
 
 	DB = database
+	log.Println("Database connection established successfully")
+	// close the database connection when the application exits
+	sqlDB, err := DB.DB()
+	if err != nil {
+		log.Fatalf("Error getting database instance: %v", err)
+	}
+	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxOpenConns(25)
+	sqlDB.SetConnMaxLifetime(5 * time.Minute)
 }

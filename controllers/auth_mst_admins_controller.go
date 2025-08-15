@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 	"strconv"
+	"time"
 
 	"ternago/backend-api/models"
 
@@ -158,5 +159,12 @@ func DeleteAuthMstAdmin(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 		"message": "Admin deleted successfully",
+	})
+}
+func HealthCheck(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"status":    "healthy",
+		"service":   "gin-app",
+		"timestamp": time.Now().Unix(),
 	})
 }
